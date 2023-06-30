@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <div th:replace="cabecalho :: head"></div>
+    <title>Crud Manager - Entregadores</title>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Crud Manager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/restaurantes}">Restaurantes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/entregadores}">Entregadores</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container my-2">
+        <h1>Entregadores</h1>
+        <div class="text-right mb-3">
+            <a th:href="@{/entregadores/form}" class="btn btn-primary btn-sm">Adicionar Entregador</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID do Entregador</th>
+                    <th>Nome</th>
+                    <th>Gênero</th>
+                    <th>Tipo de  Veiculo</th>
+                    <th>Restaurantes que faz entrega</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="e : ${entregadores}">
+                    <td><span th:text="${e.id}"></span></td>
+                    <td><span th:text="${e.name}"></span></td>
+                    <td><span th:text="${e.gender}"></span></td>
+                    <td><span th:text="${e.vehicleType}"></span></td>
+                    <td>
+                        <ul>
+                            <li th:each="restaurante : ${e.restaurantes}">
+                                <span th:text="${restaurante.name}"></span>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <a th:href="@{/entregadores/update/{id}(id=${e.id})}" class="btn btn-primary btn-sm">Alterar</a>
+                        <a th:href="@{/entregadores/delete/{id}(id=${e.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

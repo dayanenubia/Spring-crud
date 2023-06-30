@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <div th:replace="cabecalho :: head"></div>
+    <title>Crud Manager - Entregador</title>
+</head>
+
+<body>
+    <div class="container my-2">
+        <h2>Entregador</h2>
+        <form action="#" th:action="@{/entregadores/new}" th:object="${entregador}" method="POST">
+			<input type="hidden" th:field="*{id}" id="id">
+			
+            <input type="text" th:field="*{name}" placeholder="Nome do entregador" class="form-control mb-4 col-4">
+
+			<input type="text" th:field="*{gender}" placeholder="Genero" class="form-control mb-4 col-4">
+			
+			<select th:field="*{vehicleType}" class="form-control mb-4 col-4">
+			    <option value="Moto">Moto</option>
+			    <option value="Carro">Carro</option>
+			    <option value="Van">Van</option>
+			    <option value="Caminhao">Caminhão</option>
+			</select>
+			
+			 <input type="text" th:field="*{restaurantes}" placeholder="restaurantes que faz entrega" class="form-control mb-4 col-4">
+			
+            <button type="submit" class="btn btn-info col-2">Salvar</button>
+        </form>
+        <hr>
+        <a th:href="@{/entregadores}">Entregadores</a>
+    </div>
+</body>
+</html>
